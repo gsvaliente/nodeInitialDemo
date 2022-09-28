@@ -1,33 +1,51 @@
-# Sprint 4. REST API
 
-Les API són conjunts de definicions i protocols que s'utilitzen per a dissenyar i integrar el programari de les aplicacions.
+# Node Initial Project
 
-Podria considerar-se com el contracte entre xl proveïdorx d'informació i l'usuarix, on s'estableix el contingut que es necessita per part delx consumidorx (la crida) i el que requereix xl productorx (la resposta).
+### Project Structure
 
-Per exemple, el disseny d'una API de servei meteorològic podria requerir que l'usuarix escrivís un codi postal i que xl productorx donés una resposta en dues parts: la primera seria la temperatura màxima i la segona la mínima. 
+Main structure of node.js project. Folders / files:
 
-Objectiu general:
+- <b>\_\_tests__</b>. Tests folder. See [Jest Docs](https://jestjs.io/es-ES/docs/configuration) and [Chai Docs](https://www.chaijs.com/)
+- <b>app</b>:
+    - <b>config</b>
+    - <b>controllers</b>
+    - <b>middlewares</b>
+    - <b>models</b>
+    - <b>routes</b>
+    - <b>helpers</b>
+    - <b>app.js</b>. Entry point.
+- <b>package.json</b>.
+- <b>.env</b>. Environment descriptor. See [dotenv doc](https://www.npmjs.com/package/dotenv).
 
- - Aprendre a construir una API pròpia en backend.
- 
-Objectius específics:
+Extras:
+- <b>.eslintrc</b>. Linter JS, static code analyzer. See [EsLint Docs](https://eslint.org/docs/user-guide/configuring/configuration-files).
+- <b>.prettierignore</b>. Code formatter. See [Prettier Config](https://prettier.io/docs/en/configuration.html) and [Prettier Ignore](https://prettier.io/docs/en/ignore.html).
+- <b>.ecosystem.config.js</b>. Process Manage at runtime. See [PM2 Docs](https://pm2.keymetrics.io/).
 
-  - Aprendre a configurar i entendre el framework express per a node.
-  
-  - Dissenyar i configurar la persistència en base de dades.
-  
-  - Dissenyar i construir el servidor de backend.
-  
-  - Manejar l'autenticació per Tokens.
+### Import project for use with Visual Studio Code
 
-Temes:
-
-  - Fonaments API REST
-
-  - Express.js
-
-  - ORM i ODM
+Follow the steps below:
+* Clone the project from the Github Platform. Execute:
+  ```
+  git clone [url project]
+  ```
+* Open the project downloaded.
+  ![Open Project](img/VSC_open.png)
 
 
-    
-  
+### Import project for use with WebStorm
+
+Follow the steps below:
+* Clone the project from the Github Platform. Execute:
+  ```
+  git clone [url project]
+  ```
+* Open the project downloaded.
+![Open Project](img/webstorm_open.png)
+
+
+### Utilities
+
+* [Node Developers Guide](https://nodejs.dev/learn)
+* **.gitignore file** configuration. See [Official Docs](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files).
+* **Git branches**. See [Official Docs](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell)
