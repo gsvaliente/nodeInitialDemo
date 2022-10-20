@@ -1,6 +1,8 @@
 
 # Node Initial Project
 
+Rama chat
+
 ### Project Structure
 
 Main structure of node.js project. Folders / files:
