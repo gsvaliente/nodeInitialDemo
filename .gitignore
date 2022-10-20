@@ -86,3 +86,9 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+# entorno
+.env
+
+# Otros
+.DS_Store
