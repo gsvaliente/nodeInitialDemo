@@ -2,6 +2,7 @@
 # Node Initial Project
 
 Rama chat
+Cada carpeta té el seu README.md amb la descripció del projecte i les instruccions d'arrencada
 
 ### Project Structure
 
