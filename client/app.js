@@ -1,8 +1,11 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const app = express();
+const port = 3000;
+let server = require('http').createServer(app);
+let io = require('socket.io')(server);
 
-app.use('/', express.static('public'))
+
+app.use('/', express.static('public'));
 
 app.listen(port, () => {
   console.log(`Xat client running on http://localhost:${port}`)
