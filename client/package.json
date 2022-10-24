@@ -1,13 +1,13 @@
 {
   "name": "client",
   "version": "1.0.0",
-  "description": "Aquesta és la carpeta del frontend del xat de Node",
+  "description": "Frontend del xat de Node",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "JessFala",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.0.3",
