@@ -1,1 +1,0 @@
-Aquesta és la carpeta del frontend del xat de Node
