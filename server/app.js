@@ -11,5 +11,5 @@ const port = 5000
 // TODO sockets
 
 app.listen(port, () => {
-  console.log(`Xat server running on http://localhost:${port}`)
-})
+  console.log(`Xat server running on http://localhost:`${port})
+});
