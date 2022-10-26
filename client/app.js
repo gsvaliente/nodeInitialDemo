@@ -9,7 +9,7 @@ let io = require('socket.io')(server);
 //Middleware
 app.use(express.static(path.join(__dirname, 'public')));
 
-//route to index
+//Ruta a index.html
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname,'./public/index.html'))
 })
