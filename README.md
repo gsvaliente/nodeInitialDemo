@@ -4,7 +4,7 @@ Los WebSockets son una tecnología que permite la comunicación instantanea entr
 
 ## Requisitos: 🚦 🚧
 
-  ### 1- Instalar dependencias:
+  ### 1- Instalar las dependencias en las dos partes (carpetas) del proyecto: 'client' y 'server':
 
       npm install
 
