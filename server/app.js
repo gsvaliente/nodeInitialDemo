@@ -1,7 +1,21 @@
-/*const express = require('express');
+//https://www.digitalocean.com/community/tutorials/how-to-create-a-web-server-in-node-js-with-the-http-module-es
+const express = require('express');
 const app = express();
 const port = 5000;
-const socketIO = require('socket.io');*/
+const http = require('http').createServer(app);
+
+//Para ejecutar la función de sockets
+require('./sockets')(socketsio);
+//const socketIO = require('socket.io');
+
+const cors = require('cors');
+const sockets = require('./sockets/sockets');
+const io = require('socket.io')(http, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+  },
+});
 
 
 // TODO allow cors for localhost:3000 (la direcció del client)
@@ -12,10 +26,10 @@ const socketIO = require('socket.io');*/
 
 // TODO sockets
 require("dotenv").config();
-const PORT = process.env.SERVER_PORT || 4000;
+const PORT = process.env.SERVER_PORT || 5000;
 
-const cors = require("cors");
-const connectDB = require("../app/helpers/connectDB");
+/*const cors = require("cors");
+const connectDB = require("../app/helpers/conectarBDD");
 const express = require("express");
 const app = express();
 const http = require("http").createServer(app);
@@ -39,7 +53,7 @@ app.use(cors());
 app.use(routes)
 
 //Sockets
-sockets(io);
+sockets(io);*/
 
 //server
 app.listen(port, () => {
