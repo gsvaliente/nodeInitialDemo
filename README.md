@@ -18,7 +18,7 @@ Los WebSockets son una tecnología que permite la comunicación instantanea entr
 
       npm install
 
-  🆘 Consulta el package.json de cada una de las partes('client' y 'server'):    
+  🆘 Consulta el package.json de cada una de las partes ('client' y 'server'):    
   
       * node.js
       * socket.io
