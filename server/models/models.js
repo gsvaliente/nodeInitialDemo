@@ -1,42 +1,8 @@
-const mongoose = require('mongoose');
+const express = require('express');
+const router = express.Router();
 
-const usersSchema = new mongoose.Schema({
+const login = require('../controllers/login');
 
-    userName: String,
-    password: String,
-    room:{
-        roomId: String,
-        roomName: String
-    },
-}, 
-{
-    timestamps: true,
-    versionKey: false,
-  }
-);
+router.post( '/', login);
 
-
-//messages are pushed to the Rooms collection array
-const roomsSchema = new mongoose.Schema({
-    roomName: String,
-    messages: [{ 
-        user: {
-            userName: String, 
-            userId: String
-        }, 
-        room: {
-            roomName: String, 
-            roomId: String
-        }, 
-        text: String }]
-}, 
-{
-    timestamps: true,
-    versionKey: false,
-  }
-);
-const Users = mongoose.model('Users', usersSchema);
-const Rooms = mongoose.model('Rooms', roomsSchema);
-
-module.exports = { Users, Rooms };
-
+module.exports = router;
