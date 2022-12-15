@@ -14,7 +14,7 @@ Los WebSockets son una tecnología que permite la comunicación instantanea entr
       https://docs.github.com/es/repositories/creating-and-managing-repositories/cloning-a-repository
 
 
-  ### 2- Instalar las dependencias en las dos partes (carpetas) del proyecto: 'client' y 'server':
+  ### 2- Instalar las dependencias de las dos partes (carpetas) del proyecto: 'client' y 'server':
 
       npm install
 
@@ -46,7 +46,7 @@ Los WebSockets son una tecnología que permite la comunicación instantanea entr
 
       -Parte 'client': 
             [modo desarrollo]: nodemon app.js 
-            
+
       -Parte 'server': 
             [modo desarrollo]: nodemon app.js 
 
