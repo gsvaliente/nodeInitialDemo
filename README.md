@@ -1,5 +1,5 @@
 # Sprint 5.1: 
-Los WebSockets son una tecnología que permite la comunicación instantanea entre cliente y servidor. En este sprint se programa un chat con Sockets.io y Node.js.
+Los WebSockets son una tecnología que permite la comunicación instantánea entre cliente y servidor. En este sprint se programa un chat con Sockets.io y Node.js.
 
 
 ## Requisitos: 🚦 🚧
