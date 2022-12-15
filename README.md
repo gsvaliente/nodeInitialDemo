@@ -42,6 +42,7 @@ Los WebSockets son una tecnología que permite la comunicación instantanea entr
 ## Para ejecutar tanto la parte 'client' como la parte 'server': 👷‍♀️ 
 
 *Duplicar la consola y levantar el servidor de cada parte con su respectivo puerto:
+
       -Parte 'client': [modo desarrollo]: nodemon app.js 
       -Parte 'server': [modo desarrollo]: nodemon app.js 
 
