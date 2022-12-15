@@ -1,10 +1,13 @@
+
+
 # Logs
-logs
+logs|
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
+.DS_Store
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
@@ -86,9 +89,7 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
-
-# entorno
-.env
-
-# Otros
-.DS_Store
+© 2022 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
