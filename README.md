@@ -1,15 +1,49 @@
+# Sprint 5.1: 
+Los WebSockets son una tecnología que permite la comunicación instantanea entre cliente y servidor. En este sprint se programa un chat con Sockets.io y Node.js.
 
-# WebSockets
 
-Rama chat
-Cada carpeta té el seu README.md amb la descripció del projecte i les instruccions d'arrencada
+## Requisitos: 🚦 🚧
 
-Els WebSockets són una tecnologia que permet la comunicació instantània entre un client i un servidor. En aquest sprint es programarà un xat amb Sockets.io i Node.js.
+  ### 1- Instalar dependencias:
 
-## Llibreria Socket.io
+      npm install
 
-        https://socket.io/
+  🆘 Consulta el package.json    
+  
+      * node.js
+      * socket.io
+      * MongoDB
+      * bcrypt
+      * express
+      * dotenv
+      * JWT
+      * ...   
 
-## Sockets.io amb Node.js
+   👩‍💻 devDependencies:
+    
+      * nodemon
 
-        https://medium.com/@carlosazaustre/usando-websockets-con-nodejs-y-socketio-b02f66bcb58d
+  ### 2- Clonar el proyecto
+
+      $ git clone [url project]
+      
+     
+  🆘 Consulta: 
+
+      https://docs.github.com/es/repositories/creating-and-managing-repositories/cloning-a-repository
+
+  ### 3- Modificar las variables de entorno:  🏗️ 
+
+  **⚠️** :
+
+        .env-template > copiar variables > modificar los valores correspondientes en 
+        un nuevo documento .env
+
+## Para ejecutar tanto la parte 'client' como la parte 'server': 👷‍♀️ 
+
+*Duplicar la consola y levantar el servidor de cada parte con su respectivo puerto:
+      -Parte 'client': [modo desarrollo]: nodemon app.js 
+      -Parte 'server': [modo desarrollo]: nodemon app.js 
+
+## Estructura:  🏗️ + 👷‍♀️ = 🏛️ 
+
