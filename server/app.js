@@ -1,61 +1,39 @@
-//https://www.digitalocean.com/community/tutorials/how-to-create-a-web-server-in-node-js-with-the-http-module-es
-const express = require('express');
-const app = express();
-const port = 5000;
-const http = require('http').createServer(app);
-
-//Para ejecutar la función de sockets
-require('./sockets')(socketsio);
-//const socketIO = require('socket.io');
-
+require('dotenv').config();
 const cors = require('cors');
-const sockets = require('./sockets/sockets');
-const io = require('socket.io')(http, {
-  cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-  },
-});
 
+//lib imports
+const express = require('express');
+const { Server } = require('socket.io');
 
-// TODO allow cors for localhost:3000 (la direcció del client)
+const sockets = require('./sockets/sockets.js')
 
-// TODO middlewares
-
-// TODO rutes
-
-// TODO sockets
-require("dotenv").config();
-const PORT = process.env.SERVER_PORT || 5000;
-
-/*const cors = require("cors");
-const connectDB = require("../app/helpers/conectarBDD");
-const express = require("express");
 const app = express();
-const http = require("http").createServer(app);
-const routes = require("../app/routes/routes")
-const sockets = require("./sockets/sockets");
-const io = require("socket.io")(http, {
-  cors: {
-    origin: "http://localhost:8080",
-    methods: ["GET", "POST"],
-  },
-});
 
-//Create data base if not exist
-connectDB();
+// Connect to database
+require('./utils/connectDB.js')();
 
-//Middlewares
+// Middlewares
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-//Routes
-app.use(routes)
+// Routes
+app.use('/register', require('./routes/register.js'));
+app.use('/login', require('./routes/login.js'));
 
-//Sockets
-sockets(io);*/
+//invalid route handling
+app.use((req, res) => res.status(404).json({ status: "error", error: "PAGE NOT FOUND"}));
 
-//server
-app.listen(port, () => {
-  console.log(`Xat server running on http://localhost: ${port}`)
-});
+// starts http server
+const server = app.listen(process.env.API_PORT, () => {
+    console.log(`http server running on port ${process.env.API_PORT}`)
+})
+// Set up socket.io server
+
+const io = new Server(server, {
+    cors: {
+        origin: '*'
+    },
+}) 
+
+sockets(io);
