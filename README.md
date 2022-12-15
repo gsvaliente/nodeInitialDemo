@@ -4,11 +4,21 @@ Los WebSockets son una tecnología que permite la comunicación instantanea entr
 
 ## Requisitos: 🚦 🚧
 
-  ### 1- Instalar las dependencias en las dos partes (carpetas) del proyecto: 'client' y 'server':
+  ### 1- Clonar el proyecto
+
+      $ git clone [url project]
+      
+     
+  🆘 Consulta: 
+
+      https://docs.github.com/es/repositories/creating-and-managing-repositories/cloning-a-repository
+
+
+  ### 2- Instalar las dependencias en las dos partes (carpetas) del proyecto: 'client' y 'server':
 
       npm install
 
-  🆘 Consulta el package.json    
+  🆘 Consulta el package.json:    
   
       * node.js
       * socket.io
@@ -23,15 +33,6 @@ Los WebSockets son una tecnología que permite la comunicación instantanea entr
     
       * nodemon
 
-  ### 2- Clonar el proyecto
-
-      $ git clone [url project]
-      
-     
-  🆘 Consulta: 
-
-      https://docs.github.com/es/repositories/creating-and-managing-repositories/cloning-a-repository
-
   ### 3- Modificar las variables de entorno:  🏗️ 
 
   **⚠️** :
@@ -41,10 +42,13 @@ Los WebSockets son una tecnología que permite la comunicación instantanea entr
 
 ## Para ejecutar tanto la parte 'client' como la parte 'server': 👷‍♀️ 
 
-*Duplicar la consola y levantar el servidor de cada parte con su respectivo puerto:
+*Duplica la consola y levanta el servidor **de cada parte** con su respectivo puerto:
 
-      -Parte 'client': [modo desarrollo]: nodemon app.js 
-      -Parte 'server': [modo desarrollo]: nodemon app.js 
+      -Parte 'client': 
+            [modo desarrollo]: nodemon app.js 
+            
+      -Parte 'server': 
+            [modo desarrollo]: nodemon app.js 
 
 ## Estructura:  🏗️ + 👷‍♀️ = 🏛️ 
 
