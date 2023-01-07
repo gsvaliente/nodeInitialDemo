@@ -1,13 +1,10 @@
+const {Rooms} = require('../models/Rooms.js');
 
-const {Rooms} = require('../models/models.js');
-
-//retrieve messages from current room
+//Retrieve messages from current room
 const getMessages = async(room) => {
-
     let result;
 
     try {
-
         let roomInfo = '';
         let messages = '';
 
@@ -32,12 +29,12 @@ const getMessages = async(room) => {
     return result;
 }
 
-//push message to current room in db
+//Push message to current room in db
 const newMessage = async(message) => {
-
     let result;
+
     try {
-        // push message to Rooms messages array
+        // Push message to Rooms messages array
         result = await Rooms.updateOne(
             { _id: message.room.roomId }, 
             { $push: { messages: message }}
