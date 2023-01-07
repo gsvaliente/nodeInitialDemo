@@ -1,7 +1,6 @@
-const { Users } = require('../models/models.js');
+const { Users } = require('../models/Users.js');
 
 const getUsers = async (room) => {
-    
     let result;
     
     try {
@@ -18,17 +17,14 @@ const getUsers = async (room) => {
 }
 
 const disconnectUser = async(user) => {
-
     let result;
 
     try {
-        
-        // console.log('disconnectUser', user);
+        // Console.log('disconnectUser', user);
         const userDisconnected = await Users.findOneAndUpdate(
             { _id: user.userId }, 
             { 'room.roomId': null, 'room.roomName': null}
         );
-
         if (userDisconnected) {
             result = {status: 'success', 
                       user,
@@ -43,10 +39,9 @@ const disconnectUser = async(user) => {
     return result;
 }
 
-
 async function joinRoom (user, room) {
-
     let result;
+    
     try {
         // Push user into the current room
         const currentUser = await Users.findOneAndUpdate(
