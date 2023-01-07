@@ -1,22 +1,12 @@
-const {Rooms} = require('../models/models.js');
+const {Rooms} = require('../models/Rooms.js');
 
-//initiate Welcome - room 
-
-const initWelcome = async () => {
-    const roomExist = await Rooms.findOne({ roomName:'Welcome!' });
-    
-    if(!roomExist) {
-    await Rooms.create({ roomName:'Welcome!' });
-    }
-}    
-
-//create room 
+//Create room 
 const createRoom = async(roomName) => {
 
     let result;
 
     try {
-        // checks if room exists
+        // Checks if room exists
         const roomExist = await Rooms.findOne({ roomName });
 
         if(roomExist) {
@@ -31,9 +21,8 @@ const createRoom = async(roomName) => {
 
     return result;
 }
-//retrieve all rooms
+//Retrieve all rooms
 const getRooms = async() => {
-
     let result;
 
     try {
@@ -49,8 +38,7 @@ const getRooms = async() => {
     return result;
 }
 
-module.exports = {
-    initWelcome, 
+module.exports = { 
     createRoom, 
     getRooms
 };
