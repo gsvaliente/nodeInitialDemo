@@ -1,16 +1,17 @@
 require('dotenv').config();
 const cors = require('cors');
 
-//lib imports
+// lib imports
 const express = require('express');
 const { Server } = require('socket.io');
 
 const sockets = require('./sockets/sockets.js')
+const connectDB = require('./db/connectDB.js');
 
 const app = express();
 
 // Connect to database
-require('./utils/connectDB.js')();
+connectDB();
 
 // Middlewares
 app.use(express.json());
@@ -21,10 +22,10 @@ app.use(cors());
 app.use('/register', require('./routes/register.js'));
 app.use('/login', require('./routes/login.js'));
 
-//invalid route handling
+// Invalid route handling
 app.use((req, res) => res.status(404).json({ status: "error", error: "PAGE NOT FOUND"}));
 
-// starts http server
+// Starts http server
 const server = app.listen(process.env.API_PORT, () => {
     console.log(`http server running on port ${process.env.API_PORT}`)
 })
@@ -37,3 +38,6 @@ const io = new Server(server, {
 }) 
 
 sockets(io);
+
+
+
