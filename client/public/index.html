@@ -13,11 +13,21 @@
     </head> 
     <body>
         <header class="header">
-            <h2>Current Room:</h2>
+            <div>
+                <!--h1 id="roomName" class="header-roomname"></!--h1-->
+                <h1 id="userName" class="header-username"></h1>
+            </div>
+            <div>
+                <h1 id="roomName" class="header-roomname"></h1>
+            </div>
+            
+            <!--h1 class="welcome">Welcome to Fala_Chat</!--h1-->
+            <a class="button-logout" onclick="logout()"><i class="fa-solid fa-power-off fa-2x" ></i></a>
+            <!--h2>Current Room:</!--h2>
             <h1 id="roomName" class="header-roomname"></h1>
             <h1 id="userName" class="header-username"></h1>
             <div class="add-space"></div>
-             <a class="button-logout" onclick="logout()"><i class="fa-solid fa-power-off fa-2x" ></i></a>
+             <a-- class="button-logout" onclick="logout()"><i class="fa-solid fa-power-off fa-2x" ></i></a-->
        </header>
        <div class="chat-container">
             <div id="room" class="room">
