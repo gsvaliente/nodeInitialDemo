@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const {Users} = require('../models/models.js');
+const {Users} = require('../models/Users.js');
 
 const register = async (req, res) => {
 
@@ -8,7 +8,7 @@ const register = async (req, res) => {
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
 
-    //check if credentials provided
+    //Check if credentials provided
     if (!userName || !password || !confirmPassword) {
         return res.status(400).json({ 
             status: "error", 
@@ -24,8 +24,7 @@ const register = async (req, res) => {
     }
 
     try {
-        
-        //check if username is already in use 
+        //Check if username is already in use 
         const userFound = await Users.findOne({ userName });
         if(userFound) {
             return res.status(400).json({ 
@@ -33,10 +32,10 @@ const register = async (req, res) => {
                 message: `Username already registered`});
 
         }
-        // hash user password
+        // Hash user password
         const hashedPassword = await bcrypt.hash(password, 10);
         
-        //save user to db with hashed password
+        //Save user to db with hashed password
         const newUser = await Users.create({ 
             userName: userName, 
             password: hashedPassword 
@@ -48,7 +47,7 @@ const register = async (req, res) => {
             userId: newUser._id,
             userName: newUser.userName
         }
-        // creates JWT
+        // Creates JWT
         const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_KEY);
         
         console.log('JWT created ' + accessToken);
