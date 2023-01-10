@@ -50,5 +50,33 @@ Los WebSockets son una tecnología que permite la comunicación instantánea ent
       -Parte 'server': 
             [modo desarrollo]: nodemon app.js 
 
-## Estructura:  🏗️ + 👷‍♀️ = 🏛️ 
+## Estructura general del proyecto:  🏗️ + 👷‍♀️ = 🏛️ 
+
+    CLIENT
+         - Public
+             - CSS
+             - JS
+             - .html --> Estructura/contenido .htmls:
+                    .index.html -> chat
+                    .login.html -> login
+                    .register.html -> registro usuarios
+
+         - app.js -> servidor frontend
+         
+    SERVER
+         - controllers
+         - db
+             - connectDB() -> 
+         - models
+             - Rooms.js
+             - Users.js
+         - routes 
+             - login.js
+             - register.js
+         - sockets
+         - utils
+         - app.js
+
+         
+
 
