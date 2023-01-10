@@ -21,9 +21,6 @@ const registerUser = async(event) => {
                 userName,
                 password,
                 confirmPassword
-                /*userName: userName,
-                password: password,
-                confirmPassword: confirmPassword*/
             })
         });
     
