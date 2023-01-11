@@ -1,4 +1,4 @@
-//sort Limb to top and order buttonlist
+//sort Welcome to top and order buttonlist
 const sortBtnList = (btn) => {
     let buttonList = document.getElementById(btn);
     let buttonArray = Array.from(buttonList.getElementsByTagName("BUTTON"))
