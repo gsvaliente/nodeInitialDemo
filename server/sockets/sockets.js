@@ -82,6 +82,7 @@ const sockets = async (io) => {
 
             if (joinedRoom.status === 'success') {
                 if (joinedRoom.oldRoom.roomId) {
+                    //console.log(joinedRoom.oldRoom.roomId);
                     //Leave room (to join new)
                     socket.leave(joinedRoom.oldRoom.roomId);
                     
