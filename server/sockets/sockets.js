@@ -6,7 +6,7 @@ const {getMessages, newMessage} = require('../controllers/messages.js');
 
 const sockets = async (io) => {
     
-    //Authenticate socket
+    //Middleware to authenticate socket connection
     io.use((socket, next) => {
     
         const query = socket.handshake.query;
@@ -33,7 +33,7 @@ const sockets = async (io) => {
             userId: socket.decoded.userId, 
             userName: socket.decoded.userName
         };
-        console.log('this is user object: ' + user);
+        //console.log('this is user object: ' + user);
         
         console.log(`user ${user.userName} connected`);
         socket.emit('new-user', user);
