@@ -36,7 +36,9 @@ const newMessage = async(message) => {
             { $push: { messages: message }}
         );
         result = { status: 'success', message};
+
         return result;
+        
     } catch (err) {
         result =  { status:'error', message: err.message };
     }
