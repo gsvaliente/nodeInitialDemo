@@ -7,7 +7,7 @@ const login = async (req, res) => {
     const userName = req.body.userName;
     const password = req.body.password;
     
-    console.log('user input is :' + userName, password);
+    //console.log('user input is :' + userName, password);
 
     if(!userName || !password) {
         return res.status(400).json({
