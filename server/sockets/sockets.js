@@ -20,12 +20,16 @@ const sockets = async (io) => {
                         return next(new Error('Authentication error'));
                     }
                     socket.decoded = decoded;
+                    /*console.log('printing decoded: ', decoded);
+                    console.log('printing socket.decoded: ', socket.decoded);*/
+
                    });
                 }
                     next();
         });
 
     io.on('connection', socket => {
+        //console.log('printing socket.id: ', socket.id);
 
         const user = {
             userId: socket.decoded.userId, 
