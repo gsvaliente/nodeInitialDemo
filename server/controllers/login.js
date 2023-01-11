@@ -42,7 +42,6 @@ const login = async (req, res) => {
             error: '401 - Unauthorized Access: Invalid username/password'
         })
     }
- 
 }
 
 module.exports = login;

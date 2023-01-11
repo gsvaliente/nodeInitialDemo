@@ -40,8 +40,7 @@ const register = async (req, res) => {
             userName: userName, 
             password: hashedPassword 
         })
-
-        console.log(newUser);
+        //console.log(newUser);
 
         const payload = {
             userId: newUser._id,

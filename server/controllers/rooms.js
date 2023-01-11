@@ -2,7 +2,6 @@ const {Rooms} = require('../models/Rooms.js');
 
 //Create room 
 const createRoom = async(roomName) => {
-
     let result;
 
     try {

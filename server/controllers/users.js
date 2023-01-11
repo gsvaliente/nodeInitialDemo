@@ -60,7 +60,6 @@ async function joinRoom (user, room) {
     } catch (err) {
         result =  {status:'error', message: err.message};
     }
-
         return result;
 }
 
