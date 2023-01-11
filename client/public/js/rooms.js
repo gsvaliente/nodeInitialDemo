@@ -1,6 +1,8 @@
 const joinRoom = (room) => {
     // Check if room other than current
-    if (sessionStorage.roomId === room.roomId) return;
+    if (sessionStorage.roomId === room.roomId) {
+        return;
+    }
 
      // Emit to server 'join-room' event
     socket.emit('join-room', room);
