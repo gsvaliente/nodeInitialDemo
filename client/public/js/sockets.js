@@ -1,6 +1,6 @@
 socket.on('connect', () => {
     //console.log(socket.id)
-
+    
     socket.on('new-user', data => {
         document.getElementById("userName").innerHTML = `Hi!${data.userName}`;
         sessionStorage.setItem("userId",`${data.userId}`);
@@ -33,4 +33,4 @@ socket.on('connect', () => {
 
     // Retrieve room list 
     socket.emit('get-rooms');
-})
+});

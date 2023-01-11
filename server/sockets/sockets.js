@@ -28,7 +28,6 @@ const sockets = async (io) => {
         });
 
     io.on('connection', socket => {
-        //console.log(socket.id)
 
         const user = {
             userId: socket.decoded.userId, 
