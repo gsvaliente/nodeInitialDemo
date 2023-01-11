@@ -1,5 +1,4 @@
 socket.on('connect', () => {
-    //console.log(socket.id)
     
     socket.on('new-user', data => {
         document.getElementById("userName").innerHTML = `Hi!${data.userName}`;

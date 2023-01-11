@@ -27,10 +27,6 @@ const displayMessage = (message) =>{
     let ul = document.getElementById('lastMessage');
 
     // append if last message has same user.id as current
-    /*if (ul && (ul.getAttribute('userId') === message.user.userId)) {
-        ul.append(li)
-    } else {
-        if (ul) document.getElementById("lastMessage").removeAttribute("id");*/
         if (ul && (ul.getAttribute('userId') === message.user.userId)) {
             ul.append(li)
         } else {
@@ -74,24 +70,6 @@ const displayMessage = (message) =>{
     //scroll to bottom
     messageList.scrollTop = messageList.scrollHeight;
 }
-
-//output user joining room
-/*const displayJoinMessage = (message) => {
-
-   document.getElementById('lastMessage').removeAttribute('id');
-
-    let messageList = document.getElementById('messageList');
-
-    // Create the element to append
-    let li = document.createElement('li');
-    li.classList.add('chat-li-join')
-    li.textContent = message;
-    li.setAttribute('id', 'lastMessage');
-    messageList.append(li);
-
-    //scroll to bottom
-    messageList.scrollTop = messageList.scrollHeight;
-}*/
 
 const displayJoinMessage = (message) => {
 

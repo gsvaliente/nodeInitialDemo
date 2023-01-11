@@ -1,5 +1,4 @@
 'use strict'
-
 const apiUrl = 'http://localhost:4001';
 
 const registerForm = document.querySelector("form");
@@ -13,7 +12,6 @@ const registerUser = async(event) => {
     const confirmPassword = document.getElementById("confirmPassword").value;
 
     try {
-
         const response = await fetch(apiUrl + '/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -23,7 +21,6 @@ const registerUser = async(event) => {
                 confirmPassword
             })
         });
-    
         const data = await response.json();
         console.log(data);
     
@@ -41,7 +38,6 @@ const registerUser = async(event) => {
     } catch(err) {
         console.log(err);
         console.error(err.message);
-   
     }
 };
 

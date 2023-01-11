@@ -2,7 +2,7 @@
 
 const accessToken = localStorage.getItem('accessToken');
 
-console.log(accessToken);
+//console.log(accessToken);
 
 if(!accessToken) {
     window.location.assign('./login.html');

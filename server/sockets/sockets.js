@@ -8,7 +8,6 @@ const sockets = async (io) => {
     
     //Middleware to authenticate socket connection
     io.use((socket, next) => {
-    
         const query = socket.handshake.query;
         const queryToken = socket.handshake.query.accessToken;
 
@@ -32,12 +31,11 @@ const sockets = async (io) => {
         const user = {
             userId: socket.decoded.userId, 
             userName: socket.decoded.userName
-        };
-        //console.log('this is user object: ' + user);
-        
-        console.log(`user ${user.userName} connected`);
+        };       
+
+        console.log(`User connected`);
+        //console.log(`User ${user.userName} connected`);
         socket.emit('new-user', user);
-        
         socket.on('new-message', async (message) => {
         //Saves message to db before emitting back to front
             let newMsg = await newMessage(message);
@@ -67,7 +65,6 @@ const sockets = async (io) => {
 
         //Get list of rooms
         socket.on('get-rooms', async () => {
-
             let currentRooms = await getRooms();
          
             if (currentRooms.status === 'success') {
@@ -85,9 +82,7 @@ const sockets = async (io) => {
             let joinedRoom = await joinRoom(user, room);
 
             if (joinedRoom.status === 'success') {
-
                 if (joinedRoom.oldRoom.roomId) {
-                   
                     //Leave room (to join new)
                     socket.leave(joinedRoom.oldRoom.roomId);
                     
