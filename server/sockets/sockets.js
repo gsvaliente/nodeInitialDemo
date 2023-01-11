@@ -20,7 +20,6 @@ const sockets = async (io) => {
                         return next(new Error('Authentication error'));
                     }
                     socket.decoded = decoded;
-                    //console.log('decoded content: ' + decoded);
                    });
                 }
                     next();
@@ -51,13 +50,9 @@ const sockets = async (io) => {
             let createdRoom = await createRoom(roomName);
             
             if (createdRoom.status === 'success') {
-                
                 let currentUsers = await getUsers(createdRoom.room);
-           
                 io.emit('new-room', createdRoom.room, currentUsers.users);
-
                 io.to(socket.id).emit('success', `${roomName} created`);
-                
             } else {
                 io.to(socket.id).emit('error', createdRoom.message);
             }
