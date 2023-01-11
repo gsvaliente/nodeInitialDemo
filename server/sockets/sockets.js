@@ -115,7 +115,6 @@ const sockets = async (io) => {
 
                 //Retrieve messages from the new room
                 let currentMessages = await getMessages(room);
-             
                 
                 //Iterate through current room's messages if any
                 if ((currentMessages.status === 'success') && (currentMessages.messages !== null)) {
