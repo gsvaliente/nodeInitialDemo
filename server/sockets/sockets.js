@@ -6,7 +6,7 @@ const {getMessages, newMessage} = require('../controllers/messages.js');
 
 const sockets = async (io) => {
     
-    //Middleware to authenticate socket connection
+    //Middleware to authenticate server socket connection
     io.use((socket, next) => {
         const query = socket.handshake.query;
         const queryToken = socket.handshake.query.accessToken;
