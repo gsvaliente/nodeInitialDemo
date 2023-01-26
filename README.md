@@ -1,54 +1,56 @@
-# Node Initial Demo Omar
+# 4.1 Nivel 1
 
-Aquest repo l'estic fent servir per ensenyar com s'han de fer les entregues per pull request (14/3/22).
+## TASKS TO COMPLETE
 
-### Project Structure
+### Exercise 1
 
-Main structure of node.js project. Folders / files:
+- Create a server with Express
+- Create a /user endpoint that GETs a json with my name age and URL
 
-- <b>\_\_tests__</b>. Tests folder. See [Jest Docs](https://jestjs.io/es-ES/docs/configuration) and [Chai Docs](https://www.chaijs.com/)
-- <b>app</b>:
-    - <b>config</b>
-    - <b>controllers</b>
-    - <b>middlewares</b>
-    - <b>models</b>
-    - <b>routes</b>
-    - <b>helpers</b>
-    - <b>app.js</b>. Entry point.
-- <b>package.json</b>.
-- <b>.env</b>. Environment descriptor. See [dotenv doc](https://www.npmjs.com/package/dotenv).
+### Exercise 2
 
-Extras:
-- <b>.eslintrc</b>. Linter JS, static code analyzer. See [EsLint Docs](https://eslint.org/docs/user-guide/configuring/configuration-files).
-- <b>.prettierignore</b>. Code formatter. See [Prettier Config](https://prettier.io/docs/en/configuration.html) and [Prettier Ignore](https://prettier.io/docs/en/ignore.html).
-- <b>.ecosystem.config.js</b>. Process Manage at runtime. See [PM2 Docs](https://pm2.keymetrics.io/).
+- Create /upload endpoint to add a jpg,png,gif with a POST request
+- If it is NOT one of the previous types send an error
 
-### Import project for use with Visual Studio Code
+# 4.1 NIVEL 2
 
-Follow the steps below:
-* Fork the project from https://github.com/IT-Academy-BCN/nodeInitialDemo
-* Clone your fork of the project from the Github Platform. Execute:
-  ```
-  git clone https://github.com/your_username_here/nodeInitialDemo
-  ```
-* Open the project downloaded
-  ![Open Project](img/VSC_open.png)
+## TASKS TO COMPLETE
 
+### Exercise 1
 
-### Import project for use with WebStorm
+- Create an /time endpoint for POST
+- Takes a JSON with name and password
+- Sends user,password, time, date
+- Create a no-cache middleware
+- Enable CORS
 
-Follow the steps below:
-* Fork the project from https://github.com/IT-Academy-BCN/nodeInitialDemo
-* Clone your fork of the project from the Github Platform. Execute:
-  ```
-  git clone https://github.com/your_username_here/nodeInitialDemo
-  ```
-* Open the project downloaded
-![Open Project](img/webstorm_open.png)
+### Exercise 2
 
+- Create a middleware to make a basic authorization
+- Username and Password must be provided to access
 
-### Utilities
+# 4.1 Nivel 3
 
-* [Node Developers Guide](https://nodejs.dev/learn)
-* **.gitignore file** configuration. See [Official Docs](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files).
-* **Git branches**. See [Official Docs](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell)
+## TASK TO COMPLETE
+
+### Exercise 3
+
+- Create a POST request with /pokemon/:id
+- Receives a pokemon number
+- Fetch the Pokemon API
+- Send name,height, weight
+
+## HOW TO RUN
+
+_commands to be ran on your terminal of choice_
+
+1. Clone this branch to your editor of choice
+2. Import the postman file found in the `postman` directory
+3. Once postman is ready, go to the root directory and run `npm i` to install all necessary dependencies
+4. To initialize the app, run `npm start` in your terminal
+5. Once the app is running, head to postman and run the query provided in the file that was imported in step 2
+6. The app takes either the pokemon number or name!
+
+<br>
+
+Have fun!
