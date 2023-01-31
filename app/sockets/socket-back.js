@@ -10,6 +10,12 @@ const socketController = (socket) => {
   socket.on('disconnect', () => {
     socket.broadcast.emit('message', 'User has disconnected');
   });
+
+  //listen for messages from the chat
+  socket.on('chatMessage', (message) => {
+    // console.log(message);
+    socket.broadcast.emit('message', message);
+  });
 };
 
 module.exports = { socketController };
