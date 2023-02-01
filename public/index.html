@@ -4,10 +4,37 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chat</title>
+    <title>Chat App</title>
   </head>
   <body>
-    <h1>CHAT TEST</h1>
-    <hr />
+    <div class="join-container">
+      <header class="join-header">
+        <h1>CHAT WAIT ROOM</h1>
+      </header>
+      <main class="join-main">
+        <form action="chat.html">
+          <div class="form-control">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              name="username"
+              ,
+              id="username"
+              placeholder="username"
+              required
+            />
+          </div>
+          <div class="form-control">
+            <label for="room">Rooms</label>
+            <select name="room" id="room">
+              <option value="Games">Games</option>
+              <option value="Books">Books</option>
+              <option value="Music">Music</option>
+            </select>
+          </div>
+          <button type="submit" class="btn">Join Room</button>
+        </form>
+      </main>
+    </div>
   </body>
 </html>
