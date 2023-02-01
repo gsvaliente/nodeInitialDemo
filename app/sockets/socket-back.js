@@ -14,6 +14,7 @@ const socketController = (socket) => {
   //listen for messages from the chat
   socket.on('chatMessage', (message) => {
     // console.log(message);
+    //TODO sender needs to see the msg
     socket.broadcast.emit('message', message);
   });
 };

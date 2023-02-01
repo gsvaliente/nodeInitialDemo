@@ -11,19 +11,45 @@
     />
   </head>
   <body>
-    <h1>CHAT ROOM</h1>
+    <div class="chat-container">
+      <header class="chat-header">
+        <h1>Chat APP</h1>
+        <a href="index.html"> Leave Room</a>
+      </header>
 
-    <div class="row">
-      <div class="col">
-        <input
-          type="text"
-          id="txtMessage"
-          class="form-control"
-          placeholder="enter text here"
-        />
-      </div>
-      <div class="col">
-        <button id="btnSend" class="btn btn-primary">SEND</button>
+      <main class="chat-main">
+        <div class="chat-sidebar">
+          <h3 class="room-name">Room Name</h3>
+          <h2 id="room-name">Games</h2>
+          <h3 class="online-users">Users</h3>
+          <ul id="users">
+            <li>Gabriel</li>
+            <li>Teodora</li>
+            <li>Stefano</li>
+          </ul>
+        </div>
+        <div class="chat-messages">
+          <div class="message">
+            <p class="meta">Gabriel <span>10:10am</span></p>
+            <p class="text">Hello World</p>
+          </div>
+          <div class="message">
+            <p class="meta">Stefano <span>10:10am</span></p>
+            <p class="text">Hello World 2</p>
+          </div>
+        </div>
+      </main>
+      <div class="chat-form-container">
+        <form id="chat-form">
+          <input
+            type="text"
+            id="msg"
+            placeholder="enter..."
+            required
+            autocomplete="off"
+          />
+          <button class="btn">Send</button>
+        </form>
       </div>
     </div>
 
