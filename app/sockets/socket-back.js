@@ -1,30 +1,64 @@
 const { messageFormat } = require('../utils/message.utils');
+const {
+  userJoin,
+  getCurrentUser,
+  userLeaves,
+  getRoomUsers,
+} = require('../utils/users.utils');
 
-const socketController = (socket) => {
-  // console.log('user connected');
+// const socketController = (socket) => {
+function listen(io) {
+  io.on('connection', (socket) => {
+    socket.on('joinRoom', ({ username, room }) => {
+      const user = userJoin(socket.id, username, room);
 
-  socket.emit('message', messageFormat('ChatBot', 'Welcome to the chat app'));
+      socket.join(user.room);
 
-  //when user connects
-  socket.broadcast.emit(
-    'message',
-    messageFormat('ChatBot', 'User has connected')
-  );
+      socket.emit(
+        'message',
+        messageFormat('ChatBot', 'Welcome to the chat app')
+      );
 
-  //when user disconnects
-  socket.on('disconnect', () => {
-    socket.broadcast.emit(
-      'message',
-      messageFormat('ChatBot', 'User has connected')
-    );
+      //when user connects
+      socket.broadcast
+        .to(user.room)
+        .emit(
+          'message',
+          messageFormat('ChatBot', `${user.username} has connected`)
+        );
+
+      io.to(user.room).emit('usersRoom', {
+        room: user.room,
+        users: getRoomUsers(user.room),
+      });
+    });
+
+    //listen for messages from the chat
+    socket.on('chatMessage', (message) => {
+      const user = getCurrentUser(socket.id);
+
+      io.to(user.room).emit('message', messageFormat(user.username, message));
+    });
+
+    //when user disconnects
+    socket.on('disconnect', () => {
+      const user = userLeaves(socket.id);
+
+      if (user) {
+        socket.broadcast
+          .to(user.room)
+          .emit(
+            'message',
+            messageFormat('ChatBot', `${user.username} has disconnected`)
+          );
+
+        socket.broadcast.to(user.room).emit('usersRoom', {
+          room: user.room,
+          users: getRoomUsers(user.room),
+        });
+      }
+    });
   });
+}
 
-  //listen for messages from the chat
-  socket.on('chatMessage', (message) => {
-    // console.log(message);
-    //TODO sender needs to see the msg
-    socket.broadcast.emit('message', messageFormat(message));
-  });
-};
-
-module.exports = { socketController };
+module.exports = { listen };
