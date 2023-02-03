@@ -24,7 +24,7 @@ const jwtValidator = async (req, res, next) => {
 
     next();
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
     res.status(401).json({ success: false, msg: 'token not valid' });
   }
 };
