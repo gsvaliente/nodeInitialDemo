@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 const form = document.getElementById('login-form');
 
 const loginUser = async (e) => {
