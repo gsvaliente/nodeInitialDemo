@@ -33,7 +33,7 @@ const logIn = async (email, password) => {
     };
     const { data } = await axios.post(url, { email, password }, config);
     console.log(data);
-    alert('Signed In');
+    document.location.href = 'chat.html';
   } catch (error) {
     alert('Password or email invalid');
     console.log(error.message);
@@ -41,7 +41,9 @@ const logIn = async (email, password) => {
 };
 // fetchData();
 
-btn.addEventListener('click', () => {
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
   const em = email.value;
   const pass = password.value;
   logIn(em, pass);
