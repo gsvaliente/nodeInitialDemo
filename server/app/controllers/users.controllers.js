@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
-const generateJWT = require('../config/generate-jwt.config');
 
+const generateJWT = require('../config/generate-jwt.config');
 const User = require('../models/user.model');
 
 const registerUser = async (req, res) => {
@@ -48,7 +48,19 @@ const loginUser = async (req, res) => {
   }
 };
 
+const getUsers = async (req, res) => {
+  try {
+    const userList = await User.find();
+
+    res.status(200).json({ success: true, userList });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ success: false, msg: error.message });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
+  getUsers,
 };
