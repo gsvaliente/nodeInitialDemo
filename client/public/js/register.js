@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 const form = document.getElementById('register-form');
 
 const registerUser = async (e) => {
@@ -12,26 +10,28 @@ const registerUser = async (e) => {
   try {
     const url = 'http://localhost:8080/api/users/register';
     const config = {
-      headers: {
-        'Content-type': 'application/json',
-      },
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({
+        username,
+        email,
+        password,
+      }),
     };
-    const { data } = await axios.post(
-      url,
-      { username, email, password },
-      config
-    );
-    console.log(data);
+    const res = await fetch(url, config);
+    const data = await res.json();
+
+    const { msg } = data;
 
     if (data.success) {
       localStorage.setItem('x-token', data.token);
       alert('registration complete');
-      window.location.assign('./chat.html');
+      window.location.assign('../index.html');
     } else {
-      alert('something went wrong');
+      alert(`${msg[0].msg}`);
     }
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 };
 

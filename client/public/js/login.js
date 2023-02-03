@@ -11,21 +11,22 @@ const loginUser = async (e) => {
   try {
     const url = 'http://localhost:8080/api/users/login';
     const config = {
-      headers: {
-        'Content-type': 'application/json',
-      },
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
     };
-
-    const { data } = await axios.post(url, { email, password }, config);
-
-    console.log(data);
+    const res = await fetch(url, config);
+    const data = await res.json();
 
     if (data.success) {
       localStorage.setItem('x-token', data.token);
       alert('logged in');
-      window.location.assign('./chat.html');
+      window.location.assign('../index.html');
     } else {
-      console.log('error');
+      alert(`${data.msg}`);
     }
   } catch (error) {
     console.log(error.message);
