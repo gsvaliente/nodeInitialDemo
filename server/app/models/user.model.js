@@ -17,17 +17,13 @@ const UserSchema = Schema(
     },
     image: {
       type: String,
-      default: '',
-    },
-    status: {
-      type: Boolean,
-      default: true,
-    },
-    messages: {
-      default: {},
+      default:
+        'https://i.pinimg.com/originals/15/c1/ec/15c1ec0f3beb08c3587d65462fd0fc7a.jpg',
     },
   },
-  { minimize: true }
+  {
+    timestamps: true,
+  }
 );
 
 UserSchema.methods.toJSON = function () {

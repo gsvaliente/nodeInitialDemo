@@ -9,6 +9,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/users', userRouter);
-app.use('/api/auth', authRouter);
+// app.use('/api/auth', authRouter);
 
 module.exports = app;
