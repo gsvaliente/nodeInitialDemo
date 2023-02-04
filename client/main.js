@@ -8,7 +8,7 @@ if (!accessToken) {
 }
 
 const chatForm = document.getElementById('chat-form');
-// const msg = document.getElementById('msg').value;
+const chatMessages = document.querySelector('.chat-messages');
 
 const socket = io('http://localhost:8080', {
   reconnectionDelayMax: 10000,
@@ -20,6 +20,8 @@ const socket = io('http://localhost:8080', {
 socket.on('message', (message) => {
   // console.log(message);
   outputMessage(message);
+
+  chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
 chatForm.addEventListener('submit', (e) => {

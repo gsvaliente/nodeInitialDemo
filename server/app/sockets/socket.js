@@ -10,7 +10,7 @@ async function listen(io) {
 
   io.on('connection', (socket) => {
     try {
-      let user = {
+      const user = {
         username: socket.decoded.username,
         userID: socket.decoded.userID,
       };
