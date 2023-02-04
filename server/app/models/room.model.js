@@ -4,13 +4,8 @@ const RoomSchema = Schema(
   {
     roomName: {
       type: String,
-      required: [true, 'room must have a name'],
+      required: [true, 'Please provide a name'],
     },
-    messages: [
-      { user: { username: String, userID: String } },
-      { room: { roomName: String, roomID: String } },
-    ],
-    text: String,
   },
   {
     timestamps: true,

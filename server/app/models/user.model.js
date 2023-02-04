@@ -5,18 +5,19 @@ const UserSchema = Schema(
     username: {
       type: String,
       required: [true, 'username is required'],
-      unique: true,
     },
     email: {
       type: String,
       required: [true, 'email is required'],
+      lowercase: true,
       unique: true,
+      match: [/.+\@.+\..+/, 'not a valid email'],
     },
     password: {
       type: String,
       required: [true, 'password is required'],
+      minlength: [6, 'Password should be at least 6 characters long'],
     },
-    room: { roomID: String, roomName: String },
   },
   {
     timestamps: true,
