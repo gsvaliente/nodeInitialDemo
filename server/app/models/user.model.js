@@ -5,6 +5,7 @@ const UserSchema = Schema(
     username: {
       type: String,
       required: [true, 'username is required'],
+      unique: true,
     },
     email: {
       type: String,
@@ -15,11 +16,7 @@ const UserSchema = Schema(
       type: String,
       required: [true, 'password is required'],
     },
-    image: {
-      type: String,
-      default:
-        'https://i.pinimg.com/originals/15/c1/ec/15c1ec0f3beb08c3587d65462fd0fc7a.jpg',
-    },
+    room: { roomID: String, roomName: String },
   },
   {
     timestamps: true,

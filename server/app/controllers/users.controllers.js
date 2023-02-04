@@ -6,12 +6,13 @@ const User = require('../models/user.model');
 const registerUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
+
     const user = new User({ username, email, password });
 
     const salt = bcrypt.genSaltSync();
     user.password = bcrypt.hashSync(password, salt);
 
-    const token = await generateJWT(user._id);
+    const token = await generateJWT(user._id, user.username);
 
     await user.save();
     res.status(201).json({ success: true, msg: 'user created', user, token });
@@ -40,9 +41,9 @@ const loginUser = async (req, res) => {
         .json({ success: false, msg: 'email or password not valid' });
     }
 
-    const token = await generateJWT(user._id);
+    const token = await generateJWT(user._id, user.username);
 
-    res.status(200).json({ success: true, msg: 'access granted', token });
+    res.status(200).json({ success: true, user, token });
   } catch (error) {
     res.status(500).json({ success: false, msg: error.message });
   }

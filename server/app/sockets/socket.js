@@ -1,14 +1,37 @@
-function listen(io) {
+const parseJwt = require('../helpers/jwt-decode.helper');
+
+async function listen(io) {
+  io.use((socket, next) => {
+    const queryToken = socket.handshake.query.accessToken;
+    socket.decoded = parseJwt(queryToken);
+
+    next();
+  });
+
   io.on('connection', (socket) => {
-    console.log('Welcome');
+    try {
+      let user = {
+        username: socket.decoded.username,
+        userID: socket.decoded.userID,
+      };
 
-    socket.emit('message', 'welcome to chatApp');
+      console.log(`${user.username} connected`);
 
-    socket.broadcast.emit('message', 'a user connected');
+      socket.on('newMessage', async (message) => {
+        io.emit('message', message);
+        // console.log(message);
+      });
 
-    socket.on('disconnect', () => {
-      io.emit('message', 'user has left');
-    });
+      socket.emit('message', `welcome`);
+
+      socket.broadcast.emit('message', `${user.username} connected`);
+
+      socket.on('disconnect', () => {
+        io.emit('message', `${user.username} has left`);
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
   });
 }
 

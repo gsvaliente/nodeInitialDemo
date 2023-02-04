@@ -7,11 +7,10 @@ const RoomSchema = Schema(
       required: [true, 'room must have a name'],
     },
     messages: [
-      {
-        type: Schema.Types.ObjectID,
-        ref: 'Message',
-      },
+      { user: { username: String, userID: String } },
+      { room: { roomName: String, roomID: String } },
     ],
+    text: String,
   },
   {
     timestamps: true,

@@ -19,8 +19,14 @@ const loginUser = async (e) => {
     const res = await fetch(url, config);
     const data = await res.json();
 
+    console.log(data);
+    console.log(data.token);
+
     if (data.success) {
-      localStorage.setItem('x-token', data.token);
+      localStorage.clear();
+      localStorage.setItem('accessToken', data.token);
+      localStorage.setItem('userID', data.user._id);
+      localStorage.setItem('username', data.user.username);
       alert('logged in');
       window.location.assign('../index.html');
     } else {
