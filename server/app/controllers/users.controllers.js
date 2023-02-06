@@ -7,7 +7,7 @@ const registerUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
-    const user = new User({ username, email, password });
+    const user = await User.create({ username, email, password });
 
     const salt = bcrypt.genSaltSync();
     user.password = bcrypt.hashSync(password, salt);
@@ -60,8 +60,13 @@ const getUsers = async (req, res) => {
   }
 };
 
+const logOut = (req, res) => {
+  localStorage.clear();
+};
+
 module.exports = {
   registerUser,
   loginUser,
   getUsers,
+  logOut,
 };
