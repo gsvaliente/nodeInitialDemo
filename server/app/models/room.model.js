@@ -2,12 +2,28 @@ const { Schema, model } = require('mongoose');
 
 const RoomSchema = Schema(
   {
-    roomName: String,
+    name: {
+      type: String,
+      required: [true, 'field required'],
+    },
     messages: [
-      { user: { username: String, userID: String } },
-      { room: { roomName: String, roomID: String } },
+      {
+        user: {
+          username: String,
+          userID: String,
+        },
+      },
+      {
+        room: {
+          name: String,
+          roomID: String,
+        },
+      },
     ],
-    text: String,
+    text: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

@@ -2,10 +2,24 @@ const { Schema, model } = require('mongoose');
 
 const UserSchema = Schema(
   {
-    username: String,
-    email: String,
-    password: String,
-    room: { roomID: String, roomName: String },
+    username: {
+      type: String,
+      required: [true, 'field required'],
+      unique: true,
+    },
+    email: {
+      type: String,
+      required: [true, 'field required'],
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: [true, 'file required'],
+    },
+    room: {
+      roomID: String,
+      name: String,
+    },
   },
   {
     timestamps: true,
