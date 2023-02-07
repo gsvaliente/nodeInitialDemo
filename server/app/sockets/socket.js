@@ -1,15 +1,8 @@
 const parseJwt = require('../helpers/jwt-decode.helper');
 
-const {
-  getAllUsers,
-  disconnectUser,
-  joinRoom,
-} = require('../utils/users.utils');
+const { getAllRooms, createRoom, globalChat } = require('../utils/rooms.utils');
 
-const { createRoom, getAllRooms } = require('../utils/room.utils');
-const { getMessages, newMessage } = require('../utils/messages.utils');
-
-async function listen(io) {
+const listen = async (io) => {
   io.use((socket, next) => {
     const queryToken = socket.handshake.query.accessToken;
     socket.decoded = parseJwt(queryToken);
@@ -19,30 +12,23 @@ async function listen(io) {
 
   io.on('connection', async (socket) => {
     try {
-      const user = {
-        username: socket.decoded.username,
-        userID: socket.decoded.userID,
-      };
-      console.log(`${user.username} connected`);
+      const { userID, username } = socket.decoded;
+      console.log(`${username} connected`);
+      globalChat();
 
-      socket.on('message', async (message) => {
-        let msg = await newMessage(message);
-
-        if (msg.success) {
-          socket.broadcast.to(message.room.roomID).emit('message', msg.message);
-        }
-      });
-
-      socket.on('createRoom', async (roomName) => {});
+      socket.broadcast.emit('message', `${username} has joined the chat`);
 
       socket.on('disconnect', () => {
-        io.emit('message', `${user.username} has left`);
-        removeUser(socket.id);
+        io.emit('message', `${username} has left`);
+      });
+
+      socket.on('getRooms', async () => {
+        const roomList = getAllRooms();
       });
     } catch (error) {
       console.log(error.message);
     }
   });
-}
+};
 
 module.exports = { listen };

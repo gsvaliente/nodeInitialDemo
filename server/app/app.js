@@ -5,7 +5,7 @@ const userRouter = require('./routes/users.routes');
 
 const app = express();
 
-app.use(cors('http://localhost:5001'));
+app.use(cors('http://localhost:5050'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
