@@ -21,8 +21,6 @@ const registerUser = async (e) => {
     const response = await fetch(url, config);
     const data = await response.json();
 
-    console.log(data);
-
     if (data.success) {
       localStorage.clear();
       localStorage.setItem('accessToken', data.token);

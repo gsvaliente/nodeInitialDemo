@@ -20,8 +20,6 @@ const loginUser = async (e) => {
     };
     const response = await fetch(url, config);
     const data = await response.json();
-    console.log(data);
-    console.log(data.token);
 
     if (data.success) {
       localStorage.clear();
@@ -31,7 +29,7 @@ const loginUser = async (e) => {
       alert('logged in');
       window.location.assign('./chat.html');
     } else {
-      alert(`${data.msg}`);
+      alert(data.msg);
     }
   } catch (error) {
     console.error(error.message);

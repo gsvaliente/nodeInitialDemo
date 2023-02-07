@@ -15,6 +15,7 @@ const UserSchema = Schema(
     password: {
       type: String,
       required: [true, 'file required'],
+      minlength: 6,
     },
     room: {
       roomID: String,

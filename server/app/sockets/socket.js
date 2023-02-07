@@ -12,11 +12,11 @@ const listen = async (io) => {
   });
 
   io.on('connection', async (socket) => {
-    const currentUser = {
-      userID: socket.decoded.userID,
-      username: socket.decoded.username,
-    };
     try {
+      const currentUser = {
+        userID: socket.decoded.userID,
+        username: socket.decoded.username,
+      };
       console.log(`${currentUser.username} connected`);
       globalChat();
 
@@ -34,7 +34,7 @@ const listen = async (io) => {
       socket.on('getRooms', async () => {
         const list = await getAllRooms();
         const { roomList } = list;
-        console.log(roomList);
+        // console.log(roomList);
         for (const room of roomList) {
           io.to(socket.id).emit('renderRoom', room);
         }

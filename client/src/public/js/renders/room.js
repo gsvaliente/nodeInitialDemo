@@ -1,5 +1,4 @@
 //GETTING VALUES AND SETTING VALUES
-
 const roomForm = document.getElementById('room-form');
 let roomName = document.getElementById('newRoom');
 
@@ -14,10 +13,6 @@ const joinRoom = (room) => {
 };
 
 socket.emit('getRooms');
-
-// socket.on('renderRoom', (roomList) => {
-//   renderRoomList(roomList);
-// });
 
 socket.on('renderRoom', (room) => {
   const roomBtn = document.createElement('button');
@@ -38,6 +33,12 @@ const createRoom = async (e) => {
   if (!name) {
     return console.log('no name provided');
   }
+
+  const approve = confirm(`Are you sure you want to create ${name}`);
+  if (!approve) {
+    return console.log('cancelled process');
+  }
+
   socket.emit('createRoom', name);
 
   e.target.elements.newRoom.value = '';
