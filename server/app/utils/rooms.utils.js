@@ -6,7 +6,7 @@ const getAllRooms = async () => {
     const roomList = rooms.map(({ _id, name }) => {
       return { roomID: _id, name };
     });
-    console.log(roomList);
+    return { success: true, roomList };
   } catch (error) {}
 };
 

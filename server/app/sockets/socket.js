@@ -1,6 +1,7 @@
 const parseJwt = require('../helpers/jwt-decode.helper');
 
 const { getAllRooms, createRoom, globalChat } = require('../utils/rooms.utils');
+const { userJoinRoom } = require('../utils/users.utils');
 
 const listen = async (io) => {
   io.use((socket, next) => {
@@ -11,19 +12,35 @@ const listen = async (io) => {
   });
 
   io.on('connection', async (socket) => {
+    const currentUser = {
+      userID: socket.decoded.userID,
+      username: socket.decoded.username,
+    };
     try {
-      const { userID, username } = socket.decoded;
-      console.log(`${username} connected`);
+      console.log(`${currentUser.username} connected`);
       globalChat();
 
-      socket.broadcast.emit('message', `${username} has joined the chat`);
+      socket.broadcast.emit(
+        'message',
+        `${currentUser.username} has joined the chat`
+      );
 
-      socket.on('disconnect', () => {
-        io.emit('message', `${username} has left`);
+      socket.on('joinRoom', async (room) => {
+        console.log(room);
+        const currentRoom = await userJoinRoom(currentUser, room);
+        console.log(currentRoom);
       });
 
       socket.on('getRooms', async () => {
-        const roomList = getAllRooms();
+        const list = await getAllRooms();
+        const { roomList } = list;
+        for (const room of roomList) {
+          io.emit('renderRooms', room);
+        }
+      });
+
+      socket.on('disconnect', () => {
+        io.emit('message', `${currentUser.username} has left`);
       });
     } catch (error) {
       console.log(error.message);
