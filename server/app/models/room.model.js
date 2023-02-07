@@ -22,7 +22,6 @@ const RoomSchema = Schema(
     ],
     text: {
       type: String,
-      required: true,
     },
   },
   {

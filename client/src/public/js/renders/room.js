@@ -1,3 +1,8 @@
+//GETTING VALUES AND SETTING VALUES
+
+const roomForm = document.getElementById('room-form');
+let roomName = document.getElementById('newRoom');
+
 const joinRoom = (room) => {
   const currentRoom = sessionStorage.roomID;
   if (currentRoom === room.roomID) return;
@@ -8,14 +13,34 @@ const joinRoom = (room) => {
   localStorage.roomName = room.name;
 };
 
-const roomBtn = document.createElement('button');
+socket.emit('getRooms');
 
-socket.on('renderRooms', (list) => {
-  console.log(list);
+// socket.on('renderRoom', (roomList) => {
+//   renderRoomList(roomList);
+// });
 
-  roomBtn.textContent = list.name;
-  roomBtn.setAttribute('id', list.roomID);
+socket.on('renderRoom', (room) => {
+  const roomBtn = document.createElement('button');
+
+  roomBtn.textContent = room.name;
+  roomBtn.setAttribute('id', room.roomID);
 
   const rooms = document.getElementById('room-list');
   rooms.append(roomBtn);
 });
+
+const createRoom = async (e) => {
+  e.preventDefault();
+
+  const name = roomName.value;
+  console.log(name);
+
+  if (!name) {
+    return console.log('no name provided');
+  }
+  socket.emit('createRoom', name);
+
+  e.target.elements.newRoom.value = '';
+};
+
+roomForm.addEventListener('submit', createRoom);

@@ -11,8 +11,6 @@ const socket = io('http://localhost:8080', {
   },
 });
 
-socket.emit('getRooms');
-
 socket.on('message', (message) => {
   console.log(message);
 });

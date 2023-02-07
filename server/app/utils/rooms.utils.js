@@ -18,8 +18,8 @@ const createRoom = async (name) => {
       return { success: false, msg: 'room already exists' };
     }
 
-    const room = await Room.create({ name });
-    return { success: true, room };
+    const newRoom = await Room.create({ name });
+    return { success: true, newRoom };
   } catch (error) {
     return { success: false, msg: error.message };
   }

@@ -34,9 +34,17 @@ const listen = async (io) => {
       socket.on('getRooms', async () => {
         const list = await getAllRooms();
         const { roomList } = list;
+        console.log(roomList);
         for (const room of roomList) {
-          io.emit('renderRooms', room);
+          io.to(socket.id).emit('renderRoom', room);
         }
+      });
+
+      socket.on('createRoom', async (name) => {
+        const room = await createRoom(name);
+        const { newRoom } = room;
+        io.emit('renderRoom', newRoom);
+        // io.to(socket.id).emit(`room ${newRoom.name} was created`);
       });
 
       socket.on('disconnect', () => {
