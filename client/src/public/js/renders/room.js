@@ -1,15 +1,20 @@
 //GETTING VALUES AND SETTING VALUES
 const roomForm = document.getElementById('room-form');
 let roomName = document.getElementById('newRoom');
+const roomHeader = document.getElementById('room-name');
 
 const joinRoom = (room) => {
-  const currentRoom = sessionStorage.roomID;
+  const currentRoom = localStorage.getItem('roomID');
   if (currentRoom === room.roomID) return;
 
   socket.emit('joinRoom', room);
 
-  localStorage.roomID = room.roomID;
-  localStorage.roomName = room.name;
+  localStorage.setItem('room', room.name);
+  localStorage.setItem('roomID', room.roomID);
+
+  roomHeader.innerHTML = room.name;
+
+  console.log(room);
 };
 
 socket.emit('getRooms');
@@ -17,8 +22,24 @@ socket.emit('getRooms');
 socket.on('renderRoom', (room) => {
   const roomBtn = document.createElement('button');
 
+  if (room.name === 'globalChat') {
+    roomBtn.classList.add('active-room');
+    joinRoom(room);
+  }
   roomBtn.textContent = room.name;
   roomBtn.setAttribute('id', room.roomID);
+  roomBtn.classList.add('room-btn');
+
+  roomBtn.addEventListener('click', () => {
+    if (localStorage.getItem('roomID')) {
+      document
+        .getElementById(localStorage.roomID)
+        .classList.remove('active-room');
+    }
+
+    roomBtn.classList.add('active-room');
+    joinRoom(room);
+  });
 
   const rooms = document.getElementById('room-list');
   rooms.append(roomBtn);

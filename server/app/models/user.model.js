@@ -17,6 +17,10 @@ const UserSchema = Schema(
       required: [true, 'file required'],
       minlength: 6,
     },
+    online: {
+      type: Boolean,
+      default: false,
+    },
     room: {
       roomID: String,
       name: String,

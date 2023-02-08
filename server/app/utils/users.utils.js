@@ -2,9 +2,9 @@ const User = require('../models/user.model');
 
 const userJoinRoom = async (user, room) => {
   try {
-    const currentUser = await User.findByIdAndUpdate(
+    const currentUser = await User.findOneAndUpdate(
       { _id: user.userID },
-      { 'room.roomID': room.roomID, 'room.name': room.name }
+      { online: true, 'room.roomID': room.roomID, 'room.name': room.name }
     );
     if (!currentUser) {
       return {
@@ -23,6 +23,19 @@ const userJoinRoom = async (user, room) => {
   }
 };
 
+const getAllUsers = async () => {
+  try {
+    const userList = await User.find({ online: true });
+    const mappedList = userList.map(({ _id, username }) => {
+      return { _id, username };
+    });
+    return { success: true, mappedList };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   userJoinRoom,
+  getAllUsers,
 };

@@ -1,7 +1,7 @@
 const parseJwt = require('../helpers/jwt-decode.helper');
 
 const { getAllRooms, createRoom, globalChat } = require('../utils/rooms.utils');
-const { userJoinRoom } = require('../utils/users.utils');
+const { userJoinRoom, getAllUsers } = require('../utils/users.utils');
 
 const listen = async (io) => {
   io.use((socket, next) => {
@@ -25,10 +25,26 @@ const listen = async (io) => {
         `${currentUser.username} has joined the chat`
       );
 
+      socket.on('onlineUsers', async () => {
+        const data = await getAllUsers();
+        const { mappedList } = data;
+
+        const userList = mappedList.filter((user) => {
+          return user._id.toString() !== currentUser.userID;
+        });
+        for (const user of userList) {
+          io.to(socket.id).emit('renderUser', user);
+        }
+      });
+
       socket.on('joinRoom', async (room) => {
-        console.log(room);
-        const currentRoom = await userJoinRoom(currentUser, room);
-        console.log(currentRoom);
+        socket.join(room.roomID);
+        const userInfo = await userJoinRoom(currentUser, room);
+        console.log(userInfo);
+        socket.join(room.roomID);
+        socket.broadcast
+          .to(room.roomID)
+          .emit('enteredChat', 'user entered room');
       });
 
       socket.on('getRooms', async () => {
@@ -44,7 +60,7 @@ const listen = async (io) => {
         const room = await createRoom(name);
         const { newRoom } = room;
         io.emit('renderRoom', newRoom);
-        // io.to(socket.id).emit(`room ${newRoom.name} was created`);
+        //TODO io.to(socket.id).emit(`room ${newRoom.name} was created`);
       });
 
       socket.on('disconnect', () => {
