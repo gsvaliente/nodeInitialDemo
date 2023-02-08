@@ -2,10 +2,10 @@
 const roomForm = document.getElementById('room-form');
 let roomName = document.getElementById('newRoom');
 const roomHeader = document.getElementById('room-name');
+let chatMessages = document.getElementById('chat-messages');
 
 const joinRoom = (room) => {
-  const currentRoom = localStorage.getItem('roomID');
-  if (currentRoom === room.roomID) return;
+  if (localStorage.getItem('roomID') === room.roomID) return;
 
   socket.emit('joinRoom', room);
 
@@ -13,8 +13,7 @@ const joinRoom = (room) => {
   localStorage.setItem('roomID', room.roomID);
 
   roomHeader.innerHTML = room.name;
-
-  console.log(room);
+  chatMessages.innerHTML = '';
 };
 
 socket.emit('getRooms');

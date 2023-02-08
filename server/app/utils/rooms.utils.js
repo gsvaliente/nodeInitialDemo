@@ -7,7 +7,9 @@ const getAllRooms = async () => {
       return { roomID: _id, name };
     });
     return { success: true, roomList };
-  } catch (error) {}
+  } catch (error) {
+    console.error(error.message);
+  }
 };
 
 const createRoom = async (name) => {
@@ -19,9 +21,12 @@ const createRoom = async (name) => {
     }
 
     const newRoom = await Room.create({ name });
-    return { success: true, newRoom };
+    return {
+      success: true,
+      newRoom: { roomID: newRoom._id, name: newRoom.name },
+    };
   } catch (error) {
-    return { success: false, msg: error.message };
+    console.error(error.message);
   }
 };
 
@@ -31,8 +36,6 @@ const globalChat = async () => {
   if (!doesGlobalExist) {
     globalRoom = await Room.create({
       name: 'globalChat',
-      messages: [],
-      text: 'Welcome to ChatAPP',
     });
   }
 };

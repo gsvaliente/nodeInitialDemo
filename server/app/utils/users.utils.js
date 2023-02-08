@@ -19,23 +19,41 @@ const userJoinRoom = async (user, room) => {
     };
   } catch (error) {
     console.error(error.message);
-    return { success: false, msg: error.message };
   }
 };
 
 const getAllUsers = async () => {
   try {
-    const userList = await User.find({ online: true });
-    const mappedList = userList.map(({ _id, username }) => {
-      return { _id, username };
-    });
-    return { success: true, mappedList };
-  } catch (error) {
-    console.log(error);
+    let users = await User.find({ online: true });
+
+    return { success: true, users };
+  } catch (err) {
+    console.error(error.message);
+  }
+};
+
+const disconnectUser = async (user) => {
+  try {
+    let userDisconnected = await User.findOneAndUpdate(
+      { _id: user.userID },
+      { online: false, 'room.roomID': null, 'room.roomN': null }
+    );
+
+    if (userDisconnected) {
+      return { success: true, user, room: userDisconnected.room };
+    } else {
+      return {
+        success: false,
+        msg: 'user not found',
+      };
+    }
+  } catch (err) {
+    console.error(error.message);
   }
 };
 
 module.exports = {
   userJoinRoom,
   getAllUsers,
+  disconnectUser,
 };

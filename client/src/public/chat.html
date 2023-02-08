@@ -28,17 +28,42 @@
       </head>
       <body>
         <div class="chat-container">
-          <header class="chat-header">
-            <h1>Chat APP</h1>
-            <a class="logout-btn"> Leave Room</a>
-          </header>
-
+          <nav class="navbar bg-body-tertiary bg-dark" data-bs-theme="dark">
+            <div class="container-fluid">
+              <h1 class="navbar-brand">CHAT APP</h1>
+              <button class="btn logout-btn btn-danger" type="submit">
+                LOGOUT
+              </button>
+            </div>
+          </nav>
           <main class="chat-main">
             <div class="chat-sidebar">
-              <h3 class="room-name">Room Name</h3>
-              <h2 id="room-name"></h2>
+              <h5 class="container-md align-baseline room-name">Room Name</h5>
+              <h2 class="container-md align-baseline" id="room-name"></h2>
               <h3 class="rooms">Rooms</h3>
-              <form id="room-form" )>
+              <!-- new room form -->
+              <form
+                id="room-form"
+                class="row row-cols-lg-auto g-3 align-items-center"
+              >
+                <div class="col-10">
+                  <div class="input-group">
+                    <div class="input-group-text">New Room</div>
+                    <input
+                      type="text"
+                      id="newRoom"
+                      required
+                      class="form-control"
+                      id="inlineFormInputGroupUsername"
+                      placeholder="Room Name"
+                    />
+                  </div>
+                </div>
+                <div class="col-2">
+                  <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+              </form>
+              <!-- <form id="room-form" )>
                 <input
                   type="text"
                   id="newRoom"
@@ -47,34 +72,28 @@
                   autocomplete="off"
                 />
                 <button class="btn">Create Room</button>
-              </form>
+              </form> -->
               <ul id="room-list"></ul>
               <h3 class="online-users">Users</h3>
               <ul id="user-list"></ul>
             </div>
-            <div class="chat-messages">
-              <div class="message">
-                <p class="meta">Gabriel <span>10:10am</span></p>
-                <p class="text">Hello World</p>
-              </div>
-              <div class="message">
-                <p class="meta">Stefano <span>10:10am</span></p>
-                <p class="text">Hello World 2</p>
+
+            <div class="chat-container">
+              <ul id="chat-messages"></ul>
+              <div class="chat-form-container">
+                <form id="chat-form">
+                  <input
+                    type="text"
+                    id="msg"
+                    placeholder="enter..."
+                    required
+                    autocomplete="off"
+                  />
+                  <button class="btn">Send</button>
+                </form>
               </div>
             </div>
           </main>
-          <div class="chat-form-container">
-            <form id="chat-form">
-              <input
-                type="text"
-                id="msg"
-                placeholder="enter..."
-                required
-                autocomplete="off"
-              />
-              <button class="btn">Send</button>
-            </form>
-          </div>
         </div>
 
         <script

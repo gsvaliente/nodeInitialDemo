@@ -1,7 +1,12 @@
 const parseJwt = require('../helpers/jwt-decode.helper');
 
+const { saveMessage, getRoomMessages } = require('../utils/message.utils');
 const { getAllRooms, createRoom, globalChat } = require('../utils/rooms.utils');
-const { userJoinRoom, getAllUsers } = require('../utils/users.utils');
+const {
+  userJoinRoom,
+  getAllUsers,
+  disconnectUser,
+} = require('../utils/users.utils');
 
 const listen = async (io) => {
   io.use((socket, next) => {
@@ -25,32 +30,16 @@ const listen = async (io) => {
         `${currentUser.username} has joined the chat`
       );
 
-      socket.on('onlineUsers', async () => {
-        const data = await getAllUsers();
-        const { mappedList } = data;
-
-        const userList = mappedList.filter((user) => {
-          return user._id.toString() !== currentUser.userID;
-        });
-        for (const user of userList) {
-          io.to(socket.id).emit('renderUser', user);
-        }
-      });
-
-      socket.on('joinRoom', async (room) => {
-        socket.join(room.roomID);
-        const userInfo = await userJoinRoom(currentUser, room);
-        console.log(userInfo);
-        socket.join(room.roomID);
-        socket.broadcast
-          .to(room.roomID)
-          .emit('enteredChat', 'user entered room');
+      socket.on('chatMessage', async (data) => {
+        const msg = await saveMessage(data);
+        console.log(msg);
+        io.to(data.roomData.roomID).emit('newMessage', msg.message);
       });
 
       socket.on('getRooms', async () => {
         const list = await getAllRooms();
         const { roomList } = list;
-        // console.log(roomList);
+
         for (const room of roomList) {
           io.to(socket.id).emit('renderRoom', room);
         }
@@ -60,11 +49,55 @@ const listen = async (io) => {
         const room = await createRoom(name);
         const { newRoom } = room;
         io.emit('renderRoom', newRoom);
-        //TODO io.to(socket.id).emit(`room ${newRoom.name} was created`);
       });
 
-      socket.on('disconnect', () => {
-        io.emit('message', `${currentUser.username} has left`);
+      socket.on('joinRoom', async (room) => {
+        let joinedRoom = await userJoinRoom(currentUser, room);
+
+        let currentUsers = await getAllUsers();
+        io.emit('reloadUsers', currentUsers);
+
+        if (joinedRoom.previousRoom.roomID) {
+          socket.leave(joinedRoom.previousRoom.roomID);
+
+          socket.broadcast
+            .to(joinedRoom.previousRoom.roomID)
+            .emit(
+              'botNotifications',
+              `BotChat: ${joinedRoom.user.username} left the room`
+            );
+        }
+
+        socket.join(room.roomID);
+
+        socket.broadcast
+          .to(room.roomID)
+          .emit(
+            'botNotifications',
+            `BotChat: ${joinedRoom.user.username} joined the room`
+          );
+
+        let allMessages = await getRoomMessages(room);
+        allMessages.forEach((message) => {
+          io.to(socket.id).emit('newMessage', message);
+        });
+      });
+
+      socket.on('disconnect', async () => {
+        let disconnectedUser = await disconnectUser(currentUser);
+
+        socket.leave(disconnectedUser.room.roomID);
+
+        socket.broadcast
+          .to(disconnectedUser.room.roomID)
+          .emit(
+            'botNotifications',
+            `BotChat: ${disconnectedUser.user.username} is now offline`
+          );
+
+        let currentUsers = await getAllUsers();
+
+        io.emit('reloadUsers', currentUsers);
       });
     } catch (error) {
       console.log(error.message);

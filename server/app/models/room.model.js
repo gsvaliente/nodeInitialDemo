@@ -11,21 +11,11 @@ const RoomSchema = Schema(
     },
     messages: [
       {
-        user: {
-          username: String,
-          userID: String,
-        },
-      },
-      {
-        room: {
-          name: String,
-          roomID: String,
-        },
+        userData: { username: String, userID: String },
+        roomData: { roomN: String, roomID: String },
+        messageText: { type: String },
       },
     ],
-    text: {
-      type: String,
-    },
   },
   {
     timestamps: true,

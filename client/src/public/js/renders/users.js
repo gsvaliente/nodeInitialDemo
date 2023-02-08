@@ -1,11 +1,11 @@
 socket.emit('onlineUsers');
 
 const userList = document.getElementById('user-list');
-socket.on('renderUser', (user) => {
-  console.log(user);
-  const userEl = document.createElement('li');
-  userEl.textContent = user.username;
-  userEl.setAttribute('id', user._id);
+socket.on('reloadUsers', (usersList) => {
+  const { users } = usersList;
+  console.log(users);
 
-  userList.append(userEl);
+  userList.innerHTML = `
+    ${users.map((user) => `<li>${user.username}</li>`).join('')}
+  `;
 });
