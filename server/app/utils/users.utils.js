@@ -36,7 +36,7 @@ const disconnectUser = async (user) => {
   try {
     let userDisconnected = await User.findOneAndUpdate(
       { _id: user.userID },
-      { online: false, 'room.roomID': null, 'room.roomN': null }
+      { online: false, 'room.roomID': null, 'room.name': null }
     );
 
     if (userDisconnected) {
