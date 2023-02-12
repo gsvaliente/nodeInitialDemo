@@ -1,6 +1,7 @@
 import cors from 'cors';
 import express from 'express';
 
+import { pageNotFound } from './middlewares/not-found.middleware.js';
 import { router as loginRouter } from './routes/login.routes.js';
 import { router as registerRouter } from './routes/register.routes.js';
 
@@ -15,5 +16,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1/users', registerRouter);
 app.use('/api/v1/auth', loginRouter);
+
+app.use(pageNotFound);
 
 export default app;
