@@ -13,14 +13,25 @@
     />
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body class="bg-dark">
+  <body>
+    <body class="bg-dark">
     <div class="container">
       <div class="row mt-5">
         <div class="col-lg-5 bg-white m-auto rounded-top wrapper">
-          <h2 class="text-center pt-3">LogIn</h2>
-          <p class="text-center text-muted lead mb-3">Welcome Back!</p>
+          <h2 class="text-center pt-3">Register</h2>
+          <p class="text-center text-muted lead mb-3">Welcome!</p>
           <!-- form begin -->
-          <form id="login-form">
+          <form id="register-form">
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                name="username"
+                id="username"
+                placeholder="username"
+                value=""
+              />
+            </div>
             <div class="input-group mb-3">
               <input
                 type="email"
@@ -43,10 +54,10 @@
             </div>
             <div class="d-grid">
               <button type="submit" class="btn btn-success" id="btn">
-                LogIn
+                Register
               </button>
               <p class="text-center text-muted mt-2">
-                Don't have an account ? <a href="register.html">Register</a> !
+                Already have an account ? <a href="index.html">LogIn</a> !
               </p>
             </div>
           </form>
@@ -54,6 +65,6 @@
         </div>
       </div>
     </div>
-    <script src="./js/login.js"></script>
+    <script src="js/register.js"></script>
   </body>
 </html>
