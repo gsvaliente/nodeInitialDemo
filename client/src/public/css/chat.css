@@ -1,3 +1,11 @@
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
 .chat-main {
   height: 95vh;
   display: flex;
@@ -21,5 +29,8 @@
 }
 
 .chat-form {
-  width: 75%;
+  width: 70%;
+  display: flex;
+  position: absolute;
+  vertical-align: bottom;
 }
