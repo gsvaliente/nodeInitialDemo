@@ -33,6 +33,10 @@ const renderMsg = (message) => {
   li.classList.add('message-li');
   li.textContent = `${message.userData.username}: ${message.messageText}`;
 
+  if (message.userData.userID === localStorage.getItem('userID')) {
+    li.classList.add('userMessage');
+  }
+
   msgList.append(li);
 };
 
@@ -40,6 +44,7 @@ socket.on('newMessage', (message) => {
   console.log(message);
   renderMsg(message);
   // console.log(userData.username, messageText);
+  chatForm.scrollTop = chatForm.scrollHeight;
 });
 
 socket.on('botNotifications', (data) => {
