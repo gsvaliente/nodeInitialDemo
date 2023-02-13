@@ -1,0 +1,25 @@
+.chat-main {
+  height: 95vh;
+  display: flex;
+  position: relative;
+}
+
+/* .chat-container {
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  background-color: black;
+} */
+.chat-sidebar {
+  background-color: bisque;
+}
+
+.chat-container {
+  background-color: beige;
+  width: 100%;
+}
+
+.chat-form {
+  width: 75%;
+}

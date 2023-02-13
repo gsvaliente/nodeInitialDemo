@@ -11,8 +11,71 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="css/chat.css" />
   </head>
   <body>
-    <h1>CHAT</h1>
+    <div class="chat-container">
+      <nav class="navbar bg-body-tertiary bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+          <h1 class="navbar-brand">CHAT APP</h1>
+          <button class="btn logout-btn btn-danger" type="submit">
+            LOGOUT
+          </button>
+        </div>
+      </nav>
+      <main class="chat-main">
+        <div class="chat-sidebar w-25">
+          <h5 class="container-md room-name">Room Name</h5>
+          <h2 class="container-md" id="room-name"></h2>
+          <h3 class="rooms">Rooms</h3>
+          <!-- new room form -->
+          <form
+            id="room-form"
+            class="row row-cols-lg-auto g-3 align-items-center"
+          >
+            <div class="col-10">
+              <div class="input-group">
+                <div class="input-group-text">New Room</div>
+                <input
+                  type="text"
+                  id="newRoom"
+                  required
+                  class="form-control"
+                  id="inlineFormInputGroupUsername"
+                  placeholder="Room Name"
+                />
+              </div>
+            </div>
+            <div class="col-2">
+              <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+          </form>
+
+          <!-- ROOM LIST -->
+          <ul id="room-list"></ul>
+
+          <!-- USER LIST  -->
+          <h3 class="online-users">Users</h3>
+          <ul id="user-list"></ul>
+        </div>
+
+        <!-- CHAT -->
+        <div class="chat-container">
+          <ul id="chat-messages"></ul>
+          <div class="chat-form-container">
+            <form id="chat-form">
+              <input
+                type="text"
+                id="msg"
+                placeholder="enter..."
+                required
+                autocomplete="off"
+              />
+              <button class="btn">Send</button>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
   </body>
 </html>
