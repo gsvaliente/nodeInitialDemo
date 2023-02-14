@@ -14,6 +14,8 @@ const sequelize = new Sequelize(
   }
 );
 
+sequelize.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DATABASE_NAME}`);
+
 const User = userModel(sequelize, Sequelize);
 const Game = gameModel(sequelize, Sequelize);
 
