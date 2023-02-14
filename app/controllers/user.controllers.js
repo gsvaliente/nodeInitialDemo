@@ -36,6 +36,13 @@ async function createUser(req, res) {
 async function getUsers(req, res) {
   try {
     const list = await getPercentage('id', 'username', 'winPercent');
+
+    if (list.length < 1) {
+      res
+        .status(200)
+        .json({ success: true, msg: 'There are no users registered' });
+    }
+
     res.status(200).json({ nbHits: list.length, list });
   } catch (err) {
     res.status(500).json({ success: false, msg: err.message });
