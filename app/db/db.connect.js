@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const mysql = require('mysql2/promise');
 
 const userModel = require('../models/User.model');
 const gameModel = require('../models/Game.model');

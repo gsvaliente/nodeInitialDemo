@@ -1,10 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 
-const connectDB = require('./db/db.connect');
-const userRouter = require('./routes/user.routes');
-const gameRouter = require('./routes/game.routes');
-const rankingRouter = require('./routes/ranking.routes');
+const { connectDB } = require('./db/db.connect');
+const { gameRouter, rankingRouter, userRouter } = require('./routes/route');
 const pageNotFound = require('./middleware/not-found.middleware');
 
 const app = express();
