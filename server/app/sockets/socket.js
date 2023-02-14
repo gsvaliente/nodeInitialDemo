@@ -22,23 +22,19 @@ const listen = async (io) => {
         userID: socket.decoded.userID,
         username: socket.decoded.username,
       };
-      console.log(`${currentUser.username} connected`);
+      // console.log(`${currentUser.username} connected`);
       globalChat();
 
-      socket.broadcast.emit(
-        'message',
-        `${currentUser.username} has joined the chat`
-      );
-
-      socket.on('chatMessage', async (data) => {
-        const msg = await saveMessage(data);
-        console.log(msg);
-        io.to(data.roomData.roomID).emit('newMessage', msg.message);
+      socket.on('chatMessage', async (msgObject) => {
+        const msg = await saveMessage(msgObject);
+        // console.log(msg);
+        io.to(msgObject.roomData.roomID).emit('newMessage', msg.message);
       });
 
       socket.on('getRooms', async () => {
         const list = await getAllRooms();
         const { roomList } = list;
+        // console.log(list);
 
         for (const room of roomList) {
           io.to(socket.id).emit('renderRoom', room);
@@ -50,7 +46,7 @@ const listen = async (io) => {
         // console.log(room);
         if (!room.success) {
           console.error(room);
-          io.to(socket.id).emit('error', 'Room already exists');
+          io.to(socket.id).emit('error', 'Error while creating room');
         }
         const { newRoom } = room;
         io.emit('renderRoom', newRoom);

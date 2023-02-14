@@ -1,7 +1,7 @@
 const accessToken = localStorage.getItem('accessToken');
 
 if (!accessToken) {
-  alert('no credentials provided');
+  alert('no credentials provided, please log in again');
   window.location.assign('./index.html');
 }
 

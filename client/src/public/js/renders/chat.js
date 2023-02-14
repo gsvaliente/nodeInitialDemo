@@ -1,10 +1,6 @@
 const chatForm = document.getElementById('chat-form');
 let msgList = document.getElementById('chat-messages');
 
-socket.on('enteredChat', (message) => {
-  console.log(message);
-});
-
 chatForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
@@ -41,14 +37,15 @@ const renderMsg = (message) => {
 };
 
 socket.on('newMessage', (message) => {
-  console.log(message);
+  // console.log(message);
   renderMsg(message);
   // console.log(userData.username, messageText);
+  //TODO need to fix this
   chatForm.scrollTop = chatForm.scrollHeight;
 });
 
 socket.on('botNotifications', (data) => {
-  console.log(data);
+  // console.log(data);
   let botMsg = document.createElement('li');
   botMsg.classList.add('bot-notification');
   botMsg.textContent = data;

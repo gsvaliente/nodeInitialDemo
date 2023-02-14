@@ -29,7 +29,7 @@ const registerUser = async (e) => {
       alert('registration complete');
       window.location.assign('./chat.html');
     } else {
-      alert(`${data.msg}`);
+      alert(`Oops something went wrong!`);
     }
   } catch (error) {
     console.log(error);

@@ -1,5 +1,3 @@
-console.log('hello world');
-
 const form = document.getElementById('login-form');
 
 const loginUser = async (e) => {

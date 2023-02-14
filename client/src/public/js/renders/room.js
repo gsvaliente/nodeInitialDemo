@@ -65,3 +65,7 @@ const createRoom = async (e) => {
 };
 
 roomForm.addEventListener('submit', createRoom);
+
+socket.on('error', (error) => {
+  alert(error);
+});

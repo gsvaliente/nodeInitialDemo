@@ -45,3 +45,7 @@ ul {
 .bot-notification {
   text-align: center;
 }
+
+.active-room {
+  background-color: rgb(178, 247, 178);
+}

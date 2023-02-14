@@ -27,7 +27,7 @@ const getAllUsers = async () => {
     let users = await User.find({ online: true });
 
     return { success: true, users };
-  } catch (err) {
+  } catch (error) {
     console.error(error.message);
   }
 };
@@ -47,7 +47,7 @@ const disconnectUser = async (user) => {
         msg: 'user not found',
       };
     }
-  } catch (err) {
+  } catch (error) {
     console.error(error.message);
   }
 };
