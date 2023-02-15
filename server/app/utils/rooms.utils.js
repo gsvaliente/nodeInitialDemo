@@ -15,7 +15,7 @@ const getAllRooms = async () => {
 const createRoom = async (roomName) => {
   try {
     const newName = roomName.toLowerCase();
-    console.log(newName);
+    // console.log(newName);
     const doesRoomExist = await Room.findOne({ name: newName });
 
     if (doesRoomExist) {
