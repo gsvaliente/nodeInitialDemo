@@ -1,4 +1,5 @@
-const parseJwt = require('../helpers/jwt-decode.helper');
+const jwt = require('jsonwebtoken');
+const jwtValidator = require('../middlewares/jwt.middleware');
 
 const { saveMessage, getRoomMessages } = require('../utils/message.utils');
 const { getAllRooms, createRoom, globalChat } = require('../utils/rooms.utils');
@@ -10,10 +11,7 @@ const {
 
 const listen = async (io) => {
   io.use((socket, next) => {
-    const queryToken = socket.handshake.query.accessToken;
-    socket.decoded = parseJwt(queryToken);
-
-    next();
+    jwtValidator(socket, next);
   });
 
   io.on('connection', async (socket) => {
@@ -22,6 +20,7 @@ const listen = async (io) => {
         userID: socket.decoded.userID,
         username: socket.decoded.username,
       };
+
       // console.log(`${currentUser.username} connected`);
       globalChat();
 
