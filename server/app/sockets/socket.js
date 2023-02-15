@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken');
 const jwtValidator = require('../middlewares/jwt.middleware');
 
 const { saveMessage, getRoomMessages } = require('../utils/message.utils');
