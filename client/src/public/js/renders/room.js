@@ -21,6 +21,8 @@ socket.emit('getRooms');
 socket.on('renderRoom', (room) => {
   const roomBtn = document.createElement('button');
 
+  if (!room) return;
+
   if (room.name === 'globalChat') {
     roomBtn.classList.add('active-room');
     joinRoom(room);
@@ -48,7 +50,6 @@ const createRoom = async (e) => {
   e.preventDefault();
 
   const name = roomName.value;
-  console.log(name);
 
   if (!name) {
     return console.log('no name provided');

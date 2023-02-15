@@ -12,15 +12,17 @@ const getAllRooms = async () => {
   }
 };
 
-const createRoom = async (name) => {
+const createRoom = async (roomName) => {
   try {
-    const doesRoomExist = await Room.findOne({ name });
+    const newName = roomName.toLowerCase();
+    console.log(newName);
+    const doesRoomExist = await Room.findOne({ name: newName });
 
     if (doesRoomExist) {
       return { success: false, msg: 'room already exists' };
     }
 
-    const newRoom = await Room.create({ name });
+    const newRoom = await Room.create({ name: newName });
     return {
       success: true,
       newRoom: { roomID: newRoom._id, name: newRoom.name },

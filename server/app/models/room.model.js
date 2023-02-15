@@ -6,7 +6,6 @@ const RoomSchema = Schema(
       type: String,
       required: [true, 'field required'],
       trim: true,
-      minlength: 3,
       maxlength: 15,
     },
     messages: [
