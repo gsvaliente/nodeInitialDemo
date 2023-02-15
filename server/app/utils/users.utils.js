@@ -9,7 +9,7 @@ const userJoinRoom = async (user, room) => {
     if (!currentUser) {
       return {
         success: false,
-        msg: 'User was not found to join room',
+        msg: 'User was not found',
       };
     }
     return {
@@ -40,6 +40,7 @@ const disconnectUser = async (user) => {
     );
 
     if (userDisconnected) {
+      // console.log(userDisconnected, user);
       return { success: true, user, room: userDisconnected.room };
     } else {
       return {

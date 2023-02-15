@@ -58,6 +58,9 @@ const listen = async (io) => {
         let currentUsers = await getAllUsers();
         io.emit('reloadUsers', currentUsers);
 
+        // console.log(room);
+        // console.log(joinedRoom);
+
         if (joinedRoom.previousRoom.roomID) {
           socket.leave(joinedRoom.previousRoom.roomID);
 
@@ -79,9 +82,9 @@ const listen = async (io) => {
           );
 
         let allMessages = await getRoomMessages(room);
-        allMessages.forEach((message) => {
+        for (const message of allMessages) {
           io.to(socket.id).emit('newMessage', message);
-        });
+        }
       });
 
       socket.on('disconnect', async () => {
