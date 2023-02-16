@@ -36,7 +36,7 @@ const renderMsg = (message) => {
   msgList.append(li);
 };
 
-socket.on('newMessage', (message) => {
+socket.on('allMessages', (message) => {
   // console.log(message);
   renderMsg(message);
   // console.log(userData.username, messageText);

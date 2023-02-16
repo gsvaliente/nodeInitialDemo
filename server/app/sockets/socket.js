@@ -81,7 +81,7 @@ const listen = async (io) => {
 
         let allMessages = await getRoomMessages(room);
         for (const message of allMessages) {
-          io.to(socket.id).emit('newMessage', message);
+          io.to(socket.id).emit('allMessages', message);
         }
       });
 

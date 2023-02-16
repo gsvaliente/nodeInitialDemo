@@ -12,6 +12,7 @@ const userJoinRoom = async (user, room) => {
         msg: 'User was not found',
       };
     }
+    // console.log(currentUser.room);
     return {
       success: true,
       user: { userID: currentUser._id, username: currentUser.username },

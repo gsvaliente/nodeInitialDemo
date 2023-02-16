@@ -4,6 +4,8 @@ let roomName = document.getElementById('newRoom');
 const roomHeader = document.getElementById('room-name');
 let chatMessages = document.getElementById('chat-messages');
 
+socket.emit('getRooms');
+
 const joinRoom = (room) => {
   if (localStorage.getItem('roomID') === room.roomID) return;
 
@@ -15,8 +17,6 @@ const joinRoom = (room) => {
   roomHeader.innerHTML = room.name;
   chatMessages.innerHTML = '';
 };
-
-socket.emit('getRooms');
 
 socket.on('renderRoom', (room) => {
   const roomBtn = document.createElement('button');
