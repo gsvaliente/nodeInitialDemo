@@ -1,0 +1,51 @@
+ul {
+  list-style: none;
+}
+
+.chat-main {
+  max-height: 85vh;
+  display: flex;
+  position: relative;
+  overflow-y: scroll;
+}
+
+/* .chat-container {
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  background-color: black;
+} */
+.chat-sidebar {
+  background-color: bisque;
+}
+
+.chat-container {
+  background-color: beige;
+  max-height: 75vh;
+  width: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.chat-form {
+  width: 75%;
+  position: absolute;
+}
+
+.userMessage {
+  text-align: right;
+  padding-right: 35px;
+}
+
+.message-li {
+  padding-top: 5px;
+}
+
+.bot-notification {
+  text-align: center;
+}
+
+.active-room {
+  background-color: rgb(178, 247, 178);
+}
