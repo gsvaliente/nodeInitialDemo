@@ -44,7 +44,10 @@ const listen = async (io) => {
         // console.log(room);
         if (!room.success) {
           console.error(room);
-          io.to(socket.id).emit('error', 'Error while creating room');
+          io.to(socket.id).emit(
+            'error',
+            'Room already exists. (case sensitive)'
+          );
         }
         const { newRoom } = room;
         io.emit('renderRoom', newRoom);
