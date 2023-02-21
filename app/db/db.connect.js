@@ -15,12 +15,30 @@ const sequelize = new Sequelize(
   }
 );
 
-sequelize.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DATABASE_NAME}`);
+const connectDB = async () => {
+  try {
+    const connection = await mysql.createConnection({
+      host: process.env.DATABASE_HOST,
+      user: process.env.DATABASE_USER,
+      password: process.env.DATABASE_PASSWORD,
+    });
+
+    await connection.query(
+      `CREATE DATABASE IF NOT EXISTS ${process.env.DATABASE_NAME}`
+    ),
+      (err, res) => {
+        console.log(res);
+      };
+  } catch (error) {
+    console.log(error);
+  }
+};
+connectDB();
 
 const User = userModel(sequelize, Sequelize);
 const Game = gameModel(sequelize, Sequelize);
 
-sequelize.sync({ force: false });
-console.log('tables updated');
+// sequelize.sync({ force: false });
+// console.log('tables updated');
 
 module.exports = { User, Game };
